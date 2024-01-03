@@ -1,0 +1,179 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <locale.h>
+#include <unistd.h > // incluimos unistd.h para generar un delay, esta opcion es totalmente agregada por gusto personal
+
+void calculadora(); 
+float suma(float num); // declaramos todas las funciones que vamos a utilizar
+float resta(float num); // las declaramos antes de la función principal para poder escribirlas después de la función principal y se vea mas estético
+float multiplicacion(float num); // y el código sea más fácil de leer
+float division(float num);
+float potencia(float num);
+float raiz (float num);
+
+
+int main ()
+{
+	setlocale (LC_ALL,"spanish");
+	int opc;
+	printf ("\n bienvenido");
+
+	do	
+	{
+		printf ("\n ingrese una opción");
+		printf ("\n 1.-iniciar calculadora\n 2.-salir \n");
+		scanf ("%d",&opc);
+		switch (opc)
+		{
+			case 1:
+				calculadora();
+			break;
+			case 2:
+				system ("cls");
+				printf ("hasta luego \n");
+				system ("pause");
+				system ("cls");
+			break;
+			default:
+				system ("cls");
+				printf ("ingrese una opcion válida \n");
+				system ("pause");
+				system ("cls");
+		}
+	}
+	while (opc!=2);
+	return 0;
+}
+void calculadora()
+{
+	float c;
+	int opc2;
+	system ("cls");
+	printf ("ingrese un número\n");
+	scanf ("%f",&c);
+	do 
+	{
+		system ("cls");
+		printf ("\n el número guardado es: %f",c);
+		printf ("\n¿qué operacion desea hacer con el número?\n");
+		printf("\n1.-Suma\n2.-Resta\n3.-Multiplicación\n4.-División\n5.-Elevarlo a una potencia\n6.-Sacarle una raiz\n7.-Limpiar memoria de entrada e ingresar un nuevo número\n8.-Volver al menú principal \n");
+		scanf ("%d",&opc2);
+		switch (opc2)
+		{
+			case 1:
+				c=suma(c);
+				printf ("\n el resultado es %f",c);
+			break;
+			case 2:
+				c=resta(c);
+				printf ("\n el resultado es %f",c);
+			break;
+			case 3:
+				c=multiplicacion(c);
+				printf ("\n el resultado es %f",c);
+			break;
+			case 4:
+				c=division(c);
+				printf ("\n el resultado es %f",c);
+			break;
+			case 5:
+				c=potencia(c);
+				printf ("\n el resultado es %f",c);
+			break;
+			case 6:
+				c=raiz(c);
+				printf ("\n el resultado es %f",c);
+			break;
+			case 7:
+				system ("cls");
+				printf ("limpiando entrada");
+				usleep (5000000); // generamos un delay,esto totalmente opcional en la calculadora
+				system ("cls");
+				printf ("ingrese un número\n");
+				scanf ("%f",&c);
+				system ("cls");
+			break;
+			case 8:
+				system ("cls");
+				printf ("\nlimpiando memoria");
+				printf ("\nregresando al menú\n");
+				system ("pause");
+				system ("cls");
+			break;
+			default:
+				printf ("ingrese una opción válida");
+		}
+	}
+	while (opc2!=8);
+}
+
+float suma (float num)
+{
+	float a;
+	system ("cls");
+	printf ("ingrese el número que le desea sumar a %f\n",num);
+	scanf ("%f",&a);
+	num=num+a;
+	system ("cls");
+	return num;
+}
+float resta (float num)
+{
+	system ("cls");
+	float a;
+	printf ("ingrese el número que desea restarle a %f\n", num);
+	scanf ("%f",&a);
+	num=num-a;
+	system ("cls");
+	return num;
+}
+float multiplicacion(float num)
+{
+	float a;
+	system ("cls");
+	printf ("ingrese el número con el que deseas ¨multiplicar a %f \n",num);
+	scanf ("%f",&a);
+	num=num*a;
+	system ("cls");
+	return num;
+}
+float division(float num)
+{
+	float a;
+	system ("cls");
+	printf ("ingrese el número con el cuál quieres dividir a %f \n",num);
+	scanf ("%f",&a);
+	num=num/a;
+	system ("cls");
+	return num;
+}
+float potencia (float num)
+{
+	int b;
+	system ("cls");
+	printf ("¿a que potencia quiere elevar a %f(solo números enteros)?\n",num);
+	scanf ("%d",&b);
+	num=pow(num,b);
+	system ("cls");
+	return num;
+}
+float raiz(float num)
+{
+	float c;
+	system ("cls");
+	printf ("ingrese la raiz que deseas sacarle a %f\n",num);
+	scanf ("%f",&c);
+	if (num<0 && fmod(c, 2) == 0)
+	{
+		printf ("\n no les puedes saca raices de grado par a números negativos");
+	}
+	else 
+	{
+		c=1/c;
+		
+		num=pow(num,c);
+	}
+	system ("cls");
+	return num;
+}
